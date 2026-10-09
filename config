@@ -1,0 +1,76 @@
+# ~/.config/ghostty/config
+# Ghostty config tuned for a tmux + Neovim workflow on macOS.
+# Reload after editing with: Cmd+Shift+, (or restart Ghostty).
+# See all options: `ghostty +show-config --default --docs | less`
+
+# ---------- Font ----------
+font-family = "JetBrainsMono Nerd Font"
+font-size = 14
+font-thicken = true
+# adjust line spacing if it feels tight (1.0 = default)
+# adjust-cell-height = 10%
+
+# ---------- Theme / color ----------
+# Ghostty ships hundreds of themes. List them: `ghostty +list-themes`
+# rose-pine-moon matches the aesthetic in Kun Chen's setup.
+# NOTE: built-in theme names use spaces + Title Case, not hyphens.
+theme = Rose Pine Moon
+# True Rose Pine Moon base, matching the theme (and the spyglass mock).
+# Was #1a1826 ("cc-darker-bg" deepened variant) until 2026-08-12.
+background = #232136
+# Fully opaque background (transparency turned off 2026-08-13).
+# Was 0.82 with background-blur = 40 if you ever want it back.
+background-opacity = 1
+background-blur = false
+# Keep sRGB. Rose Pine Moon is authored in sRGB, so this renders the exact
+# colours the theme specifies. `display-p3` reinterprets the same hex values
+# as P3 coordinates, which oversaturates the accents (love shifts dE 10.5,
+# gold and pine push outside the sRGB gamut entirely). That is a saturation
+# boost, not an accuracy gain. Do not "upgrade" this to display-p3.
+window-colorspace = srgb
+
+# ---------- Window / chrome ----------
+window-padding-x = 8
+window-padding-y = 6
+# Transparent title bar: seamless with the background,
+# keeps the window fully draggable.
+macos-titlebar-style = transparent
+# Dock icon recoloured to match Rose Pine Moon (iris ghost on base screen).
+# Revert with `macos-icon = official`.
+macos-icon = custom-style
+macos-icon-ghost-color = #c4a7e7
+macos-icon-screen-color = #232136
+window-save-state = always
+# Don't nag when closing a pane/window
+confirm-close-surface = false
+
+# ---------- Cursor ----------
+cursor-style = block
+cursor-style-blink = false
+# Let Neovim/tmux control the cursor shape instead of shell integration
+shell-integration-features = no-cursor
+
+# ---------- macOS keys (important for tmux + Neovim) ----------
+# Makes the Option key send a real Alt/Meta so Alt-based tmux and nvim
+# keybinds work. If you type accented characters a lot, use `right` instead.
+macos-option-as-alt = true
+
+# ---------- Scrollback ----------
+# In BYTES (not lines). ~100MB is plenty for large AI-agent diffs/logs.
+# (tmux keeps its own scrollback too; this is for raw non-tmux output.)
+scrollback-limit = 100000000
+
+# ---------- Mouse / clipboard ----------
+mouse-hide-while-typing = true
+copy-on-select = clipboard
+clipboard-paste-protection = true
+
+# ---------- Misc quality-of-life ----------
+# Open a new Ghostty window/tab in the same working directory
+window-inherit-working-directory = true
+# Smoother resizing
+resize-overlay = never
+
+# ---------- Split styling ----------
+# (Removed `unfocused-split-opacity`: only affects Ghostty-native splits,
+# and all splitting happens in tmux. Re-add if that ever changes.)
