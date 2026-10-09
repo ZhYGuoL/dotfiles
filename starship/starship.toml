@@ -1,0 +1,46 @@
+"$schema" = 'https://starship.rs/config-schema.json'
+
+# Rose Pine Moon palette to match Ghostty + Neovim.
+palette = "rose_pine_moon"
+
+# Two-line prompt: directory + git on top, prompt symbol below.
+format = """
+$directory$git_branch$git_status
+$character"""
+
+# Blank line before each new prompt for breathing room.
+add_newline = true
+
+[directory]
+# Show only the current folder name (~ for home), no leading path.
+format = "[$path]($style) "
+style = "bold foam"
+truncation_length = 1
+truncate_to_repo = false
+truncation_symbol = ""
+
+[git_branch]
+symbol = ""
+format = "[$branch]($style)"
+style = "subtle"
+
+[git_status]
+format = "[$all_status$ahead_behind]($style)"
+style = "gold"
+
+[character]
+success_symbol = "[❯](foam)"
+error_symbol = "[❯](love)"
+vimcmd_symbol = "[❮](iris)"
+
+# Rose Pine Moon colors
+[palettes.rose_pine_moon]
+love = "#eb6f92"
+gold = "#f6c177"
+rose = "#ea9a97"
+pine = "#3e8fb0"
+foam = "#9ccfd8"
+iris = "#c4a7e7"
+text = "#e0def4"
+subtle = "#908caa"
+muted = "#6e6a86"
